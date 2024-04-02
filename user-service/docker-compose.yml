@@ -1,0 +1,19 @@
+version: "1.0.0"
+services:
+  database:
+    image: mariadb
+    container_name: mariadb-for-user-service
+    environment:
+      - MARIADB_ROOT_PASSWORD=1234
+    ports:
+      - 3306:3306
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    ports:
+      - 8000:8000
+    container_name: my-user-service
+

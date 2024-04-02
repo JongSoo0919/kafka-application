@@ -1,0 +1,19 @@
+version: "1.0.0"
+services:
+  database:
+    image: mysql
+    container_name: mysql-for-product-service
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+    ports:
+      - 3307:3306
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - database
+    ports:
+      - 8002:8002
+    container_name: my-product-service
+
