@@ -8,7 +8,7 @@ COPY . /app
 
 RUN gradle clean build --no-daemon
 
-FROM openjdk:17-jdk-slim
+FROM --platform=linux/amd64 openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar /app/user-service.jar
 

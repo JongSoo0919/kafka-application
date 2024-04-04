@@ -6,10 +6,10 @@ spring:
     name: product-service
 
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 1234
-    url: jdbc:mysql://mysql-for-product-service.backing-service.svc.cluster.local/kafka?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mariadb://mariadb-for-product-service.backing-service.svc.cluster.local:3306/kafka?characterEncoding=UTF-8&serverTimezone=UTC
 
   jpa:
     show-sql: true
@@ -20,10 +20,11 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
 
   kafka:
     consumer:
-      bootstrap-servers: localhost:29092
+      bootstrap-servers: kafka-0-internal.backing-service.svc.cluster.local:9092
       group-id: sample-group-id-1
 
 
